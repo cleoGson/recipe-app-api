@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from core import views as core_views
+from  product import  views as product_views
 
 
 urlpatterns = [
@@ -37,6 +38,8 @@ urlpatterns = [
     ),
     path('api/user/', include('user.urls')),
     path('api/recipe/', include('recipe.urls')),
+    path('api/product/', include('product.urls')),
+    path('change-language/', product_views.ChangeLanguageView.as_view(), name='change-language'),
 ]
 
 if settings.DEBUG:
