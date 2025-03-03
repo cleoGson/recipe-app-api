@@ -8,6 +8,7 @@ from drf_spectacular.utils import (
     OpenApiTypes,
 )
 
+
 from rest_framework import (
     viewsets,
     mixins,
@@ -17,6 +18,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
 
 from core.models import (
     Recipe,
@@ -113,6 +115,8 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
     """Base viewset for recipe attributes."""
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = 1
 
     def get_queryset(self):
         """Filter queryset to authenticated user."""
